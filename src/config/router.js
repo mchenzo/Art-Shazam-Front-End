@@ -6,6 +6,7 @@ import CameraFeed from '../screens/CameraFeed';
 import MyArt from '../screens/MyArt';
 import Settings from '../screens/settings';
 
+
 export const Tabs = TabNavigator({
 	Settings: {
 		screen: Settings,

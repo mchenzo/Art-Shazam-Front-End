@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { Tabs } from './config/router';
+import { Provider } from 'mobx-react';
+
 
 
 export default class App extends Component {
 	render() {
 		return (
-			<Tabs />
+				<Tabs />
 		)
 	}
 }

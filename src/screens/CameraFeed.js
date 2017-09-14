@@ -4,23 +4,23 @@ import { Screen } from '@shoutem/ui';
 import Camera from 'react-native-camera';
 import { getClosestMatch, hydrate } from '../services/api-layer';
 import { Icon } from 'react-native-elements';
+import MatchStore from '../stores/MatchStore';
 
 
-export default class CameraFeed extends Component {
+
+class CameraFeed extends Component {
 	async componentWillMount() {
-		console.log('component mounted????????????????')
 		try {
 			let thirsty = await hydrate();
 			console.log(`App was thirsty................................but ${thirsty.data}`)
-		} catch (err) {
-			console.log(`Error hydrating images from database: ${err}. I'm dying of thirst`)
-		}
+		} catch (err) { console.log(`Error hydrating images from database: ${err}. I'm dying of thirst`) }
 	}
 
 	async takePicture() {
 		try {
 			let snapshot = await this.camera.capture();
 			let response = await getClosestMatch(snapshot.path);
+			MatchStore.addMatch(response.data)
 			console.log('==================================== response data:', response.data)
 		} catch (err) { console.log('ERROR <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><><> ERROR: ', err) }
 	}
@@ -36,9 +36,12 @@ export default class CameraFeed extends Component {
 					aspect = {Camera.constants.Aspect.fill}
 					captureTarget={Camera.constants.CaptureTarget.disk}
 				>
+
+				
 					<TouchableOpacity 
 						onPress = { () => this.takePicture() } 
 						activeOpacity = { 0.3 }
+						style = { { marginBottom: 14 } }
 					>
 						<Icon name = 'camera' size={30} color = 'white' />
 					</TouchableOpacity>
@@ -65,3 +68,6 @@ const styles = StyleSheet.create({
 	    margin: 40
 	}
 })
+
+
+export default CameraFeed;
