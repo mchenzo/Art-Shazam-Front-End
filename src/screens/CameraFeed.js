@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, StatusBar, Dimensions } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View, StatusBar, Dimensions, CameraRoll } from 'react-native';
 import { Screen } from '@shoutem/ui';
 import Camera from 'react-native-camera';
 import { getClosestMatch, hydrate } from '../services/api-layer';
@@ -7,10 +7,10 @@ import { Icon } from 'react-native-elements';
 import MatchStore from '../stores/MatchStore';
 import ViewPort from '../components/ViewPort';
 import CircleButton from '../components/CircleButton';
+import CameraRollStore from '../stores/CameraRollStore';
 
 
 
-let flashToggle = 'off';
 
 class CameraFeed extends Component {
 	async componentWillMount() {
@@ -34,6 +34,7 @@ class CameraFeed extends Component {
 	}
 
 	render() {
+		const { navigate } = this.props.navigation;
 
 		return (
 			<Screen>
@@ -46,7 +47,7 @@ class CameraFeed extends Component {
 					aspect = { Camera.constants.Aspect.fill }
 					captureTarget = { Camera.constants.CaptureTarget.disk }
 					captureMode = { Camera.constants.CaptureMode.still }
-					flashMode = { Camera.constants.FlashMode[{flashToggle}] }
+					flashMode = { Camera.constants.FlashMode.off }
 				>
 
 					<ViewPort />
@@ -58,7 +59,7 @@ class CameraFeed extends Component {
 						>
 
 							<CircleButton 
-								name = 'flash-on'
+								name = 'flash-off'
 								iconSize = { 15 }
 								borderSize = { 25 }
 							/>
@@ -67,7 +68,10 @@ class CameraFeed extends Component {
 
 
 						<TouchableOpacity 
-							onPress = { () => this.takePicture() } 
+							onPress = { () => { 
+								this.takePicture() 
+								navigate('MyArt')
+							} } 
 							activeOpacity = { 0.3 }
 						>
 
@@ -81,7 +85,7 @@ class CameraFeed extends Component {
 
 
 						<TouchableOpacity 
-							onPress = { () => this.takePicture() } 
+							onPress = { () =>  CameraRoll.getPhotos(FETCH_PARAMS, storeImages, logImageError) } 
 							activeOpacity = { 0.3 }
 						>
 
@@ -108,14 +112,6 @@ const styles = StyleSheet.create({
 	   justifyContent: 'flex-end',
 	   alignItems: 'center',
 	},
-	capture: {
-	    flex: 0,
-	    backgroundColor: '#fff',
-	    borderRadius: 5,
-	    color: '#000',
-	    padding: 10,
-	    margin: 40
-	}
 })
 
 

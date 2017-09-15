@@ -5,26 +5,26 @@ const ViewPort = () => {
 	return (
 		<View>
 
-			<View style = { styles.ViewPortBorderTop } >
+			<View style = { [styles.ViewPortBorderTop, { borderTopColor: '#FF6633', borderWidth: 0.5, borderLeftColor: '#FF6633', borderRightColor: '#FF6633' }] } >
 
 				<View style = { styles.VPInterior } >
-					<View style = { { width: 30, height: 30, borderWidth: 1, borderTopColor: '#FF6663', borderLeftColor: '#FF6663' } } ></View>
+					<View style = { { width: 25, height: 25, borderWidth: 2, borderTopColor: '#FF6663', borderLeftColor: '#FF6663' } } ></View>
 				</View>
 
 				<View style = { styles.VPInterior } >
-					<View style = { { alignSelf: 'flex-end', width: 30, height: 30, borderWidth: 1, borderTopColor: '#FF6663', borderRightColor: '#FF6663' } } ></View>
+					<View style = { { alignSelf: 'flex-end', width: 25, height: 25, borderWidth: 2, borderTopColor: '#FF6663', borderRightColor: '#FF6663' } } ></View>
 				</View>
 
 			</View>
 
-			<View style = { styles.ViewPortBorderBottom } >
+			<View style = { [styles.ViewPortBorderBottom, { borderBottomColor: '#FF6633', borderWidth: 0.5, borderLeftColor: '#FF6633', borderRightColor: '#FF6633' }] } >
 
 				<View style = { styles.VPInteriorBottom } >
-					<View style = { { width: 30, height: 30, borderWidth: 1, borderBottomColor: '#FF6663', borderLeftColor: '#FF6663' } } ></View>
+					<View style = { { width: 25, height: 25, borderWidth: 2, borderBottomColor: '#FF6663', borderLeftColor: '#FF6663' } } ></View>
 				</View>	
 
 				<View style = { styles.VPInteriorBottom } >
-					<View style = { { alignSelf: 'flex-end', width: 30, height: 30, borderWidth: 1, borderBottomColor: '#FF6663', borderRightColor: '#FF6663' } } ></View>
+					<View style = { { alignSelf: 'flex-end', width: 25, height: 25, borderWidth: 2, borderBottomColor: '#FF6663', borderRightColor: '#FF6663' } } ></View>
 				</View>
 
 			</View>
