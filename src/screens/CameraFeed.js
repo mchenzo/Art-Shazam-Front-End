@@ -85,7 +85,7 @@ class CameraFeed extends Component {
 
 
 						<TouchableOpacity 
-							onPress = { () =>  CameraRoll.getPhotos(FETCH_PARAMS, storeImages, logImageError) } 
+							onPress = { () =>  navigate('CameraRollScreen') } 
 							activeOpacity = { 0.3 }
 						>
 

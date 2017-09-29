@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, Image, View, ScrollView, CameraRoll } from 'react-native';
 import CameraRollStore from '../stores/CameraRollStore';
+import CameraRollPicker from 'react-native-camera-roll-picker';
 
 
-const FETCH_PARAMS = { first: 25 }
 
 
 class CameraRollScreen extends Component {
@@ -22,6 +22,8 @@ class CameraRollScreen extends Component {
 		return (
 			<ScrollView style={styles.container}>
         		<View style={styles.imageGrid}>
+
+                    <CameraRollPicker callback={() => console.log('hi')} />
 
         		</View>
         	</ScrollView>
